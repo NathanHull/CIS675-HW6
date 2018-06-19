@@ -1,4 +1,5 @@
 import analysis.*;
+import javafx.scene.transform.Translate;
 import lexer.*;
 import node.*;
 import parser.*;
@@ -29,7 +30,10 @@ public class driver {
 			try {
 				Start ast = parser.parse();
 				System.out.println("Parsed successfully");
-				ast.apply(new TranslateGraph());
+				TranslateGraph tg = new TranslateGraph();
+				ast.apply(tg);
+				tg.printTree();
+				System.out.println("\n\nIs this graph acyclic? " + tg.isAcyclic + "\n");
 			} catch (Exception e) {
 				throw e;
 			}
