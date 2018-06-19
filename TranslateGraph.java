@@ -54,14 +54,10 @@ public class TranslateGraph extends DepthFirstAdapter {
 	boolean isAcyclic = true;
 
 	public void defaultIn(Node node) {
-		System.out.println(node.getClass());
-		if (node.parent() != null) {
-			System.out.println("Parent: " + node.parent().getClass());
-		} else {
+		if (node.parent() == null) {
 			root = new TreeNode(node);
 			foundNodes.put(node, root);
 		}
-		System.out.println("\n");
 
 		if (!foundNodes.containsKey(node)) {
 			TreeNode newTreeNode = new TreeNode(node);
@@ -76,6 +72,7 @@ public class TranslateGraph extends DepthFirstAdapter {
 	}
 
 	public void printTree() {
+		System.out.println("Printing tree:\n");
 		root.print();
 	}
 	
